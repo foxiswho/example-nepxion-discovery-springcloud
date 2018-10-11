@@ -63,6 +63,8 @@ Use ApolloConfigDBDev;
 
 # 第四步 克隆本案例
 
+bootstrap.properties 中的的IP 地址，要改为你的本机IP地址
+
 
 启动 
 
