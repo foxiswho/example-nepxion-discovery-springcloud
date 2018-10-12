@@ -5,10 +5,12 @@ package com.nepxion.discovery.plugin.example.service.feign;
  * <p>Description: Nepxion Discovery</p>
  * <p>Copyright: Copyright (c) 2017-2050</p>
  * <p>Company: Nepxion</p>
+ *
  * @author Haojun Ren
  * @version 1.0
  */
 
+import com.nepxion.discovery.plugin.example.service.consts.ServiceConsts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nepxion.discovery.common.constant.DiscoveryConstant;
 
+import javax.xml.ws.Service;
+
 @RestController
-@ConditionalOnProperty(name = DiscoveryConstant.SPRING_APPLICATION_NAME, havingValue = "discovery-springcloud-example-b")
+@ConditionalOnProperty(name = DiscoveryConstant.SPRING_APPLICATION_NAME, havingValue = ServiceConsts.discovery_springcloud_example_b)
 public class BFeignImpl extends AbstractFeignImpl implements BFeign {
     private static final Logger LOG = LoggerFactory.getLogger(BFeignImpl.class);
 
@@ -32,6 +36,36 @@ public class BFeignImpl extends AbstractFeignImpl implements BFeign {
         value = cFeign.invoke(value);
 
         LOG.info("调用路径：{}", value);
+
+        return value;
+    }
+
+    @Override
+    public String get() {
+        String value = "get=ggggggggggggggg";
+
+        LOG.info("调用路径：{}", value);
+        LOG.info("调用路径：{}", value);
+        LOG.info("===================", value);
+        LOG.info("===================", value);
+        LOG.info("===================", value);
+        LOG.info("===================", value);
+        LOG.info("===================", value);
+        LOG.info("===================", value);
+
+        return value;
+    }
+
+    @Override
+    public String post(@RequestBody String value) {
+        value = doInvoke(value);
+
+        LOG.info("post：{}", value);
+        LOG.info("post：{}", value);
+        LOG.info("post：{}", value);
+        LOG.info("post：{}", value);
+        LOG.info("post：{}", value);
+        LOG.info("post：{}", value);
 
         return value;
     }

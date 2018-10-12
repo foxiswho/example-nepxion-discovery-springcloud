@@ -5,6 +5,7 @@ package com.nepxion.discovery.plugin.example.service.impl;
  * <p>Description: Nepxion Discovery</p>
  * <p>Copyright: Copyright (c) 2017-2050</p>
  * <p>Company: Nepxion</p>
+ *
  * @author Haojun Ren
  * @version 1.0
  */
@@ -75,11 +76,27 @@ public class MyDiscoveryEnabledStrategy implements DiscoveryEnabledStrategy {
 
         LOG.info("Serivice端负载均衡用户定制触发：serviceId={}, host={}, metadata={}, context={}", serviceId, server.toString(), metadata, context);
 
+        System.out.println("sssssssssssssssssssssssssssssssssssss");
+        System.out.println("sssssssssssssssssssssssssssssssssssss");
+        System.out.println("sssssssssssssssssssssssssssssssssssss");
+        System.out.println("sssssssssssssssssssssssssssssssssssss");
+        System.out.println("sssssssssssssssssssssssssssssssssssss");
+        System.out.println("sssssssssssssssssssssssssssssssssssss");
+        System.out.println(attributes);
+        System.out.println(attributes.get(ServiceStrategyConstant.METHOD).toString());
+
+        String method = attributes.get(ServiceStrategyConstant.METHOD).toString();
+        LOG.info("过滤条件：method=get时 ，当前 method={}", method);
+        if (StringUtils.isNotEmpty(method) && "get".equals(method)) {
+            return true;
+        }
+
         String filterServiceId = "discovery-springcloud-example-b";
         String filterVersion = "1.0";
         String filterBusinessValue = "abc";
         if (StringUtils.equals(serviceId, filterServiceId) && StringUtils.equals(version, filterVersion)) {
             if (attributes.containsKey(ServiceStrategyConstant.PARAMETER_MAP)) {
+
                 Map<String, Object> parameterMap = (Map<String, Object>) attributes.get(ServiceStrategyConstant.PARAMETER_MAP);
                 String value = parameterMap.get("value").toString();
                 if (StringUtils.isNotEmpty(value) && value.contains(filterBusinessValue)) {
